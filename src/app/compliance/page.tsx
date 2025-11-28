@@ -247,27 +247,126 @@ export default function CompliancePage() {
         </div>
       </section>
 
-      {/* Growth & Opportunities */}
-      <section className="section-padding bg-gradient-dark text-white">
-        <div className="container-custom">
-          <div className="max-w-4xl mx-auto text-center">
+      {/* Growth & Opportunities - Redesigned */}
+      <section className="relative py-20 md:py-28 bg-gradient-to-br from-primary-base via-primary-contrast to-primary-base text-white overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-accent-gold/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-gold/5 rounded-full blur-3xl"></div>
+        
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-5" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
+
+        <div className="container-custom relative z-10">
+          <div className="max-w-6xl mx-auto">
+            {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
+              className="text-center mb-16"
             >
-              <Users className="w-16 h-16 text-accent-gold mx-auto mb-6" />
-              <h2 className="text-4xl font-heading font-bold mb-6">
-                Open to Growth & New Opportunities
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-accent-gold/20 rounded-full mb-6">
+                <Users className="w-10 h-10 text-accent-gold" />
+              </div>
+              
+              <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+                Open to Growth & <span className="text-accent-gold">New Opportunities</span>
               </h2>
-              <p className="text-xl text-white/90 mb-8">
+              
+              <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-4">
                 We are committed to continuous growth, compliance excellence, and openness to new opportunities
                 that align with our values and benefit our clients and communities.
               </p>
-              <a href="/contact" className="btn-primary bg-gradient-gold">
-                Partner With Us
-              </a>
+              
+              <p className="text-base md:text-lg text-white/70 max-w-2xl mx-auto">
+                Partner with a company that prioritizes integrity, innovation, and sustainable growth.
+              </p>
+            </motion.div>
+
+            {/* Value Propositions Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all"
+              >
+                <div className="w-12 h-12 bg-accent-gold/20 rounded-xl flex items-center justify-center mb-4">
+                  <CheckCircle2 className="w-6 h-6 text-accent-gold" />
+                </div>
+                <h3 className="text-xl font-heading font-semibold mb-3">Compliance First</h3>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  Every partnership is built on a foundation of regulatory compliance and industry best practices.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all"
+              >
+                <div className="w-12 h-12 bg-accent-gold/20 rounded-xl flex items-center justify-center mb-4">
+                  <Award className="w-6 h-6 text-accent-gold" />
+                </div>
+                <h3 className="text-xl font-heading font-semibold mb-3">Quality Driven</h3>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  We maintain the highest standards of quality and safety across all our service offerings.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all"
+              >
+                <div className="w-12 h-12 bg-accent-gold/20 rounded-xl flex items-center justify-center mb-4">
+                  <Shield className="w-6 h-6 text-accent-gold" />
+                </div>
+                <h3 className="text-xl font-heading font-semibold mb-3">Trust & Integrity</h3>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  Transparent operations and ethical business practices are at the core of everything we do.
+                </p>
+              </motion.div>
+            </div>
+
+            {/* CTA Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-center"
+            >
+              <div className="inline-flex flex-col sm:flex-row items-center gap-4">
+                <a 
+                  href="/contact" 
+                  className="group relative px-8 py-4 bg-accent-gold text-primary-base font-semibold rounded-xl overflow-hidden transition-all hover:scale-105 hover:shadow-xl hover:shadow-accent-gold/20"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    Partner With Us
+                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </span>
+                </a>
+                
+                <a 
+                  href="/services" 
+                  className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all"
+                >
+                  Explore Services
+                </a>
+              </div>
+              
+              <p className="text-white/60 text-sm mt-6">
+                Ready to discuss opportunities? Get in touch with our team today.
+              </p>
             </motion.div>
           </div>
         </div>
