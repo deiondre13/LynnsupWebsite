@@ -68,7 +68,7 @@ export default function ContactPage() {
               {/* Badge */}
               <div className="inline-flex items-center gap-2 bg-accent-gold/20 text-accent-gold px-4 py-2 rounded-full text-sm font-semibold mb-6">
                 <Mail className="w-4 h-4" />
-                <span>Let's Connect</span>
+                <span>Let&apos;s Connect</span>
               </div>
 
               {/* Heading */}
@@ -153,7 +153,7 @@ export default function ContactPage() {
                     Send Us a Message
                   </h2>
                   <p className="text-neutral-muted">
-                    Fill out the form below and we'll get back to you as soon as possible.
+                    Fill out the form below and we&apos;ll get back to you as soon as possible.
                   </p>
                 </div>
 
@@ -265,7 +265,7 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <p className="font-semibold">Message sent successfully!</p>
-                        <p className="text-sm text-green-700">We'll get back to you within 24 hours.</p>
+                        <p className="text-sm text-green-700">We&apos;ll get back to you within 24 hours.</p>
                       </div>
                     </motion.div>
                   )}
