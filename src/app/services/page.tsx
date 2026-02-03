@@ -154,12 +154,12 @@ export default function ServicesPage() {
               </div>
 
               {/* Heading */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 leading-tight">
                 Our <span className="text-accent-gold">Services</span>
               </h1>
               
               {/* Main description */}
-              <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-6 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-6 leading-relaxed">
                 Comprehensive multi-service solutions designed to support your business operations
                 with excellence, compliance, and integrity.
               </p>
@@ -169,7 +169,7 @@ export default function ServicesPage() {
                 From construction and mining to electrical services and safety equipment, we deliver 
                 specialized expertise across multiple industries throughout South Africa.
               </p>
-
+              
               {/* Stats */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 <motion.div
@@ -323,7 +323,7 @@ export default function ServicesPage() {
                   <span>Custom Solutions</span>
                 </div>
                 
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6 leading-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6 leading-tight">
                   Need a Custom<br />
                   <span className="text-accent-gold">Solution?</span>
                 </h2>

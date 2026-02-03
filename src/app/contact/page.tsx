@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { type ChangeEvent, type FormEvent, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send } from 'lucide-react'
+import emailjs from '@emailjs/browser'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -13,19 +14,102 @@ export default function ContactPage() {
     message: '',
   })
   const [status, setStatus] = useState('')
+  const [ticketNumber, setTicketNumber] = useState<string | null>(null)
+  const [customerConfirmationSent, setCustomerConfirmationSent] = useState<boolean | null>(null)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setStatus('sending')
-    
-    // Simulate form submission (replace with actual implementation)
-    setTimeout(() => {
-      setStatus('success')
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
-    }, 1500)
+  const generateTicketNumber = () => {
+    const now = new Date()
+    const yyyy = now.getFullYear()
+    const mm = String(now.getMonth() + 1).padStart(2, '0')
+    const dd = String(now.getDate()).padStart(2, '0')
+
+    const bytes = new Uint8Array(6)
+    crypto.getRandomValues(bytes)
+    const rand = Array.from(bytes)
+      .map((b) => b.toString(16).padStart(2, '0'))
+      .join('')
+      .slice(0, 8)
+      .toUpperCase()
+
+    return `LYN-${yyyy}${mm}${dd}-${rand}`
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    setStatus('sending')
+    setTicketNumber(null)
+    setCustomerConfirmationSent(null)
+    
+    try {
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+      const internalTemplateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      const customerTemplateId = process.env.NEXT_PUBLIC_EMAILJS_CUSTOMER_TEMPLATE_ID
+
+      if (!serviceId || !internalTemplateId || !publicKey) {
+        setStatus('error')
+        return
+      }
+
+      const ticket = generateTicketNumber()
+
+      // Send email using EmailJS
+      const internalResult = await emailjs.send(
+        serviceId,
+        internalTemplateId,
+        {
+          ticket_number: ticket,
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: 'machaputadiwa1@gmail.com',
+        },
+        publicKey
+      )
+
+      if (internalResult.text !== 'OK') {
+        setStatus('error')
+        return
+      }
+
+      if (!customerTemplateId) {
+        setCustomerConfirmationSent(false)
+      } else {
+        try {
+          const customerResult = await emailjs.send(
+            serviceId,
+            customerTemplateId,
+            {
+              ticket_number: ticket,
+              customer_name: formData.name,
+              customer_email: formData.email,
+              subject: formData.subject,
+              message: formData.message,
+              to_email: formData.email,
+              support_email: 'info@lynnsup.co.za',
+            },
+            publicKey
+          )
+
+          setCustomerConfirmationSent(customerResult.text === 'OK')
+        } catch (error) {
+          console.error('Customer confirmation email error:', error)
+          setCustomerConfirmationSent(false)
+        }
+      }
+
+      setStatus('success')
+      setTicketNumber(ticket)
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
+    } catch (error) {
+      console.error('Email send error:', error)
+      setStatus('error')
+    }
+  }
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
@@ -35,18 +119,6 @@ export default function ContactPage() {
       address: '165 De Villiers Road',
       city: 'Hillside, Randfontein 1759',
       region: 'Gauteng',
-    },
-    {
-      name: 'Office 2 - Merafong',
-      address: '53 Platinum Street',
-      city: 'Carletonville 2499',
-      region: 'Merafong',
-    },
-    {
-      name: 'Office 3 - Free State',
-      address: '37 Mazeppa Way, Conera',
-      city: 'Virginia',
-      region: 'Free State',
     },
   ]
 
@@ -72,12 +144,12 @@ export default function ContactPage() {
               </div>
 
               {/* Heading */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 leading-tight">
                 Get in <span className="text-accent-gold">Touch</span>
               </h1>
               
               {/* Main description */}
-              <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-6 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-6 leading-relaxed">
                 Ready to discuss your project? Contact us today for a consultation and discover 
                 how Lynnsup can support your business needs.
               </p>
@@ -119,8 +191,8 @@ export default function ContactPage() {
                   className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20"
                 >
                   <MapPin className="w-8 h-8 text-accent-gold mx-auto mb-2" />
-                  <div className="text-white/90 text-sm font-semibold mb-1">3 Locations</div>
-                  <div className="text-white/70 text-xs">Across South Africa</div>
+                  <div className="text-white/90 text-sm font-semibold mb-1">Main Office</div>
+                  <div className="text-white/70 text-xs">Rand West City</div>
                 </motion.div>
               </div>
             </motion.div>
@@ -149,7 +221,7 @@ export default function ContactPage() {
                     <Send className="w-4 h-4" />
                     <span>Get In Touch</span>
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary-base mb-3">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-primary-base mb-3">
                     Send Us a Message
                   </h2>
                   <p className="text-neutral-muted">
@@ -265,7 +337,33 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <p className="font-semibold">Message sent successfully!</p>
-                        <p className="text-sm text-green-700">We&apos;ll get back to you within 24 hours.</p>
+                        <p className="text-sm text-green-700">
+                          Your ticket number is{' '}
+                          <span className="font-semibold">{ticketNumber || '—'}</span>. We&apos;ll get back to you within 24 hours.
+                        </p>
+                        {customerConfirmationSent === false && (
+                          <p className="text-sm text-green-700">
+                            If you don&apos;t receive a confirmation email, please keep this ticket number for reference.
+                          </p>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {status === 'error' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-800 flex items-center gap-3"
+                    >
+                      <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="font-semibold">Failed to send message</p>
+                        <p className="text-sm text-red-700">Please try again or call us directly at +27 72 294 8797</p>
                       </div>
                     </motion.div>
                   )}
@@ -283,7 +381,7 @@ export default function ContactPage() {
             >
               <div className="bg-white rounded-2xl shadow-xl p-8 border border-neutral-light">
                 <div className="mb-6">
-                  <h2 className="text-2xl md:text-3xl font-heading font-bold text-primary-base mb-2">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-heading font-bold text-primary-base mb-2">
                     Contact Information
                   </h2>
                   <p className="text-neutral-muted">
@@ -405,12 +503,11 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Office Locations - Colorful & Modern Redesign */}
-      <section className="relative section-padding bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 overflow-hidden">
+      {/* Office Location - Professional Single Location Design */}
+      <section className="relative section-padding bg-gradient-to-br from-slate-50 via-white to-blue-50 overflow-hidden">
         {/* Decorative background elements */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-yellow-400/10 to-orange-400/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-accent-gold/10 to-yellow-400/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-br from-primary-base/5 to-blue-400/10 rounded-full blur-3xl"></div>
 
         <div className="container-custom relative z-10">
           <motion.div
@@ -420,98 +517,190 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 text-purple-600 px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-purple-200">
+            <div className="inline-flex items-center gap-2 bg-accent-gold/10 text-accent-gold px-5 py-2.5 rounded-full text-sm font-semibold mb-6 border border-accent-gold/20">
               <MapPin className="w-4 h-4" />
-              <span>Find Us</span>
+              <span>Visit Us</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4">
-              Our <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent">Locations</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
+              Our <span className="bg-gradient-to-r from-accent-gold via-yellow-500 to-amber-500 bg-clip-text text-transparent">Headquarters</span>
             </h2>
             
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-              We operate from multiple locations across South Africa to better serve our clients
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Centrally located in Rand West City to serve clients across Gauteng and beyond
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {offices.map((office, index) => {
-              const gradients = [
-                'from-purple-500 via-pink-500 to-rose-500',
-                'from-blue-500 via-cyan-500 to-teal-500',
-                'from-orange-500 via-amber-500 to-yellow-500'
-              ]
-              const bgGradients = [
-                'from-purple-50 to-pink-50',
-                'from-blue-50 to-cyan-50',
-                'from-orange-50 to-yellow-50'
-              ]
-              const shadowColors = [
-                'hover:shadow-purple-500/20',
-                'hover:shadow-blue-500/20',
-                'hover:shadow-orange-500/20'
-              ]
+          {/* Single Office - Large Feature Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="max-w-5xl mx-auto"
+          >
+            <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+              {/* Decorative top bar */}
+              <div className="h-2 bg-gradient-to-r from-accent-gold via-yellow-500 to-amber-500"></div>
               
-              return (
-                <motion.div
-                  key={office.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`group relative bg-white rounded-3xl p-8 text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl ${shadowColors[index]} border border-gray-100`}
-                >
-                  {/* Decorative corner accent */}
-                  <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${bgGradients[index]} rounded-bl-full opacity-50`}></div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                {/* Left side - Visual/Map placeholder */}
+                <div className="relative bg-gradient-to-br from-primary-base to-primary-contrast p-12 flex items-center justify-center overflow-hidden">
+                  {/* Decorative elements */}
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-accent-gold/20 rounded-full blur-2xl"></div>
+                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-accent-gold/10 rounded-full blur-2xl"></div>
                   
-                  {/* Icon container with gradient */}
-                  <div className="relative mb-6">
-                    <div className={`w-20 h-20 bg-gradient-to-br ${gradients[index]} rounded-2xl flex items-center justify-center mx-auto shadow-lg transform group-hover:rotate-6 transition-transform duration-300`}>
-                      <MapPin className="w-10 h-10 text-white" />
+                  <div className="relative z-10 text-center">
+                    {/* Large icon */}
+                    <div className="relative inline-block mb-6">
+                      <div className="w-32 h-32 bg-gradient-to-br from-accent-gold to-yellow-500 rounded-3xl flex items-center justify-center shadow-2xl shadow-accent-gold/30 transform hover:scale-110 transition-transform duration-300">
+                        <MapPin className="w-16 h-16 text-white" />
+                      </div>
+                      {/* Animated pulse rings */}
+                      <div className="absolute inset-0 w-32 h-32 bg-accent-gold/30 rounded-3xl animate-ping"></div>
+                      <div className="absolute inset-0 w-32 h-32 bg-accent-gold/20 rounded-3xl animate-pulse"></div>
                     </div>
-                    {/* Pulse ring */}
-                    <div className={`absolute inset-0 w-20 h-20 bg-gradient-to-br ${gradients[index]} rounded-2xl mx-auto opacity-20 animate-ping`}></div>
-                  </div>
-                  
-                  {/* Office number badge */}
-                  <div className={`inline-flex items-center justify-center w-8 h-8 bg-gradient-to-br ${gradients[index]} text-white text-sm font-bold rounded-full mb-4 shadow-md`}>
-                    {index + 1}
-                  </div>
-                  
-                  <h3 className="text-xl md:text-2xl font-heading font-bold text-gray-800 mb-4 group-hover:text-gray-900 transition-colors">
-                    {office.name}
-                  </h3>
-                  
-                  <div className="space-y-2 text-gray-600">
-                    <p className="flex items-center justify-center gap-2 text-sm">
-                      <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      {office.address}
+                    
+                    <h3 className="text-2xl font-heading font-bold text-white mb-2">
+                      Main Office
+                    </h3>
+                    <p className="text-white/80 text-sm">
+                      Serving clients nationwide
                     </p>
-                    <p className="text-sm font-medium">{office.city}</p>
-                    <div className={`inline-block px-3 py-1 bg-gradient-to-r ${bgGradients[index]} rounded-full text-sm font-semibold mt-2`}>
-                      {office.region}
+                    
+                    {/* Quick stats */}
+                    <div className="mt-8 grid grid-cols-2 gap-4">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                        <div className="text-2xl font-bold text-accent-gold mb-1">24/7</div>
+                        <div className="text-xs text-white/80">Available</div>
+                      </div>
+                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                        <div className="text-2xl font-bold text-accent-gold mb-1">5min</div>
+                        <div className="text-xs text-white/80">Response</div>
+                      </div>
                     </div>
                   </div>
+                </div>
 
-                  {/* View on map link */}
-                  <div className="mt-6">
-                    <a 
-                      href="#" 
-                      className={`inline-flex items-center gap-2 text-sm font-semibold bg-gradient-to-r ${gradients[index]} bg-clip-text text-transparent hover:opacity-80 transition-opacity`}
-                    >
-                      View on Map
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </a>
+                {/* Right side - Details */}
+                <div className="p-10 lg:p-12">
+                  <div className="space-y-8">
+                    {/* Office name */}
+                    <div>
+                      <div className="inline-flex items-center gap-2 bg-accent-gold/10 text-accent-gold px-3 py-1 rounded-full text-xs font-semibold mb-3">
+                        <span className="w-2 h-2 bg-accent-gold rounded-full animate-pulse"></span>
+                        Headquarters
+                      </div>
+                      <h4 className="text-3xl font-heading font-bold text-primary-base mb-2">
+                        {offices[0].name}
+                      </h4>
+                    </div>
+
+                    {/* Address details */}
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                        <div className="w-10 h-10 bg-gradient-to-br from-accent-gold to-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
+                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-xs text-gray-500 font-semibold mb-1">STREET ADDRESS</div>
+                          <div className="text-gray-800 font-medium">{offices[0].address}</div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                        <div className="w-10 h-10 bg-gradient-to-br from-accent-gold to-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
+                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                          </svg>
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-xs text-gray-500 font-semibold mb-1">CITY & POSTAL CODE</div>
+                          <div className="text-gray-800 font-medium">{offices[0].city}</div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                        <div className="w-10 h-10 bg-gradient-to-br from-accent-gold to-yellow-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-md">
+                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-xs text-gray-500 font-semibold mb-1">PROVINCE</div>
+                          <div className="text-gray-800 font-medium">{offices[0].region}, South Africa</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Action buttons */}
+                    <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                      <a
+                        href="https://www.google.com/maps/dir/?api=1&destination=165+De+Villiers+Road+Hillside+Randfontein+1759+South+Africa"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-accent-gold to-yellow-500 text-primary-base font-semibold rounded-xl hover:shadow-lg hover:shadow-accent-gold/30 transition-all hover:scale-105"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                        </svg>
+                        Get Directions
+                      </a>
+                      <a
+                        href="tel:+27722948797"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white border-2 border-accent-gold text-accent-gold font-semibold rounded-xl hover:bg-accent-gold hover:text-white transition-all hover:scale-105"
+                      >
+                        <Phone className="w-5 h-5" />
+                        Call Now
+                      </a>
+                    </div>
                   </div>
-                </motion.div>
-              )
-            })}
-          </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Additional info cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-5xl mx-auto"
+          >
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 text-center hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 bg-accent-gold/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h4 className="font-semibold text-primary-base mb-2">Office Hours</h4>
+              <p className="text-sm text-gray-600">Mon-Fri: 8AM-5PM<br/>Sat: 9AM-1PM</p>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 text-center hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 bg-accent-gold/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h4 className="font-semibold text-primary-base mb-2">Walk-ins Welcome</h4>
+              <p className="text-sm text-gray-600">No appointment needed for consultations</p>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 text-center hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 bg-accent-gold/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                </svg>
+              </div>
+              <h4 className="font-semibold text-primary-base mb-2">Free Parking</h4>
+              <p className="text-sm text-gray-600">Ample parking available on-site</p>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

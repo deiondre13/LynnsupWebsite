@@ -230,11 +230,11 @@ export default function ProjectsPage() {
                 <span>Portfolio Showcase</span>
               </div>
               
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 leading-tight">
                 Our <span className="text-accent-gold">Projects</span>
               </h1>
               
-              <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-6 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-6 leading-relaxed">
                 Delivering excellence across construction, mining, technical, and industrial services throughout South Africa
               </p>
               

@@ -7,6 +7,24 @@ const config: Config = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  safelist: [
+    // Gradient text classes for active navigation
+    'from-blue-500',
+    'to-cyan-500',
+    'from-purple-500',
+    'to-pink-500',
+    'from-green-500',
+    'to-emerald-500',
+    'from-orange-500',
+    'to-amber-500',
+    'from-red-500',
+    'to-rose-500',
+    'from-indigo-500',
+    'to-violet-500',
+    'bg-gradient-to-r',
+    'bg-clip-text',
+    'text-transparent',
+  ],
   theme: {
     extend: {
       colors: {

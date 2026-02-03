@@ -16,9 +16,9 @@ export default function AboutPage() {
   // Company statistics
   const stats = [
     { value: '5+', label: 'Years of Excellence', icon: Calendar },
-    { value: '150+', label: 'Projects Completed', icon: CheckCircle },
-    { value: '50+', label: 'Happy Clients', icon: Users },
-    { value: '200+', label: 'Skilled Professionals', icon: UserCheck },
+    { value: '100%', label: 'Commitment to Quality', icon: CheckCircle },
+    { value: '24/7', label: 'Support Available', icon: Users },
+    { value: '1', label: 'Main Office', icon: UserCheck },
   ]
 
   // Core values with detailed descriptions
@@ -83,8 +83,8 @@ export default function AboutPage() {
     },
     {
       year: '2022',
-      title: 'ISO Certification',
-      description: 'Achieved ISO compliance and expanded team to over 200 skilled professionals across South Africa.',
+      title: 'ISO Quality Management System (QMS)',
+      description: 'Our QMS is aligned to ISO (ISO 9001 – 2015), ensuring quality standards across all operations.',
       icon: Award
     },
     {
@@ -94,9 +94,9 @@ export default function AboutPage() {
       icon: Zap
     },
     {
-      year: '2024',
+      year: '2024-25',
       title: 'Continued Growth',
-      description: 'Reached 150+ completed projects milestone and established partnerships with leading industrial companies.',
+      description: 'Aspiring to reach 150+ completed projects and establishing partnerships with leading industrial companies.',
       icon: TrendingUp
     },
   ]
@@ -150,12 +150,12 @@ export default function AboutPage() {
                   CIPC Registered • 2019/463569/07
                 </span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 leading-tight">
                 Building South Africa&apos;s
                 <br />
                 <span className="text-accent-gold">Industrial Future</span>
               </h1>
-              <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-8">
+              <p className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed mb-8">
                 Lynnsup (Pty) Ltd is a multi-service company committed to excellence, integrity, and creating meaningful employment opportunities across South Africa.
               </p>
               <Link 

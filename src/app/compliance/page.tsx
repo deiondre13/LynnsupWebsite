@@ -64,12 +64,12 @@ export default function CompliancePage() {
               </div>
 
               {/* Heading */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 leading-tight">
                 Compliance & <span className="text-accent-gold">Certifications</span>
               </h1>
               
               {/* Main description */}
-              <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-6 leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-6 leading-relaxed">
                 Committed to the highest standards of compliance, safety, and quality in all our operations
                 across South Africa.
               </p>
@@ -168,7 +168,7 @@ export default function CompliancePage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-heading font-bold text-primary-base mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-primary-base mb-4">
               Certifications & <span className="gradient-text">Compliance</span>
             </h2>
             <div className="divider-gold mx-auto mb-6"></div>
@@ -213,7 +213,7 @@ export default function CompliancePage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-heading font-bold text-primary-base mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-primary-base mb-4">
                 Our <span className="gradient-text">Commitments</span>
               </h2>
               <div className="divider-gold mx-auto mb-6"></div>
@@ -270,11 +270,11 @@ export default function CompliancePage() {
                 <Users className="w-10 h-10 text-accent-gold" />
               </div>
               
-              <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
                 Open to Growth & <span className="text-accent-gold">New Opportunities</span>
               </h2>
               
-              <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-4">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-4">
                 We are committed to continuous growth, compliance excellence, and openness to new opportunities
                 that align with our values and benefit our clients and communities.
               </p>
