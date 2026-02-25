@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Shield, Award, CheckCircle2, FileText, Users, Building2, TrendingUp, Phone, Mail } from 'lucide-react'
+import { Shield, Award, CheckCircle2, FileText, Users, Building2 } from 'lucide-react'
 
 export default function CompliancePage() {
   const certifications = [
@@ -44,22 +44,86 @@ export default function CompliancePage() {
 
   return (
     <div className="pt-20">
-      {/* Hero Section */}
-      <section className="section-padding bg-gradient-primary text-white">
-        <div className="container-custom text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-5xl md:text-6xl font-heading font-bold mb-6">
-              Compliance & <span className="text-accent-gold">Certifications</span>
-            </h1>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
-              Committed to the highest standards of compliance, safety, and quality in all our operations
-              across South Africa.
-            </p>
-          </motion.div>
+      {/* Hero Section - Enlarged & Enhanced */}
+      <section className="relative py-24 md:py-28 bg-gradient-to-br from-primary-base via-primary-contrast to-primary-base text-white overflow-hidden">
+        {/* Decorative blur orbs */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-accent-gold/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-gold/5 rounded-full blur-3xl"></div>
+        
+        <div className="container-custom relative z-10">
+          <div className="max-w-5xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 bg-accent-gold/20 text-accent-gold px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                <Shield className="w-4 h-4" />
+                <span>Certified Excellence</span>
+              </div>
+
+              {/* Heading */}
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 leading-tight">
+                Compliance & <span className="text-accent-gold">Certifications</span>
+              </h1>
+              
+              {/* Main description */}
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-6 leading-relaxed">
+                Committed to the highest standards of compliance, safety, and quality in all our operations
+                across South Africa.
+              </p>
+
+              {/* Additional context */}
+              <p className="text-base md:text-lg text-white/70 max-w-2xl mx-auto mb-12">
+                Our comprehensive compliance framework ensures regulatory adherence, workplace safety, 
+                and industry-leading quality standards across all service areas.
+              </p>
+
+              {/* Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20"
+                >
+                  <div className="text-3xl md:text-4xl font-bold text-accent-gold mb-1">100%</div>
+                  <div className="text-white/90 text-sm font-semibold">Compliant</div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20"
+                >
+                  <div className="text-3xl md:text-4xl font-bold text-accent-gold mb-1">CIPC</div>
+                  <div className="text-white/90 text-sm font-semibold">Registered</div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20"
+                >
+                  <div className="text-3xl md:text-4xl font-bold text-accent-gold mb-1">ISO</div>
+                  <div className="text-white/90 text-sm font-semibold">Aligned</div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20"
+                >
+                  <div className="text-3xl md:text-4xl font-bold text-accent-gold mb-1">CoC</div>
+                  <div className="text-white/90 text-sm font-semibold">Licensed</div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -104,7 +168,7 @@ export default function CompliancePage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-heading font-bold text-primary-base mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-primary-base mb-4">
               Certifications & <span className="gradient-text">Compliance</span>
             </h2>
             <div className="divider-gold mx-auto mb-6"></div>
@@ -149,7 +213,7 @@ export default function CompliancePage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-4xl font-heading font-bold text-primary-base mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading font-bold text-primary-base mb-4">
                 Our <span className="gradient-text">Commitments</span>
               </h2>
               <div className="divider-gold mx-auto mb-6"></div>
@@ -184,145 +248,126 @@ export default function CompliancePage() {
       </section>
 
       {/* Growth & Opportunities - Redesigned */}
-      <section className="relative py-24 md:py-32 overflow-hidden">
-        {/* Background with gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-base via-primary-contrast to-primary-base"></div>
-        
-        {/* Decorative orbs */}
+      <section className="relative py-20 md:py-28 bg-gradient-to-br from-primary-base via-primary-contrast to-primary-base text-white overflow-hidden">
+        {/* Decorative elements */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-accent-gold/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-gold/5 rounded-full blur-3xl"></div>
         
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-5" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
+
         <div className="container-custom relative z-10">
           <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left content */}
+            {/* Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-16"
+            >
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-accent-gold/20 rounded-full mb-6">
+                <Users className="w-10 h-10 text-accent-gold" />
+              </div>
+              
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
+                Open to Growth & <span className="text-accent-gold">New Opportunities</span>
+              </h2>
+              
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-4">
+                We are committed to continuous growth, compliance excellence, and openness to new opportunities
+                that align with our values and benefit our clients and communities.
+              </p>
+              
+              <p className="text-base md:text-lg text-white/70 max-w-2xl mx-auto">
+                Partner with a company that prioritizes integrity, innovation, and sustainable growth.
+              </p>
+            </motion.div>
+
+            {/* Value Propositions Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="text-white"
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all"
               >
-                <div className="inline-flex items-center gap-2 bg-accent-gold/20 text-accent-gold px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                  <TrendingUp className="w-4 h-4" />
-                  <span>Growth Opportunities</span>
+                <div className="w-12 h-12 bg-accent-gold/20 rounded-xl flex items-center justify-center mb-4">
+                  <CheckCircle2 className="w-6 h-6 text-accent-gold" />
                 </div>
-                
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6 leading-tight">
-                  Open to Growth &<br />
-                  <span className="text-accent-gold">New Opportunities</span>
-                </h2>
-                
-                <p className="text-lg text-white/80 mb-8 leading-relaxed">
-                  We are committed to continuous growth, compliance excellence, and openness to new opportunities 
-                  that align with our values and benefit our clients and communities.
+                <h3 className="text-xl font-heading font-semibold mb-3">Compliance First</h3>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  Every partnership is built on a foundation of regulatory compliance and industry best practices.
                 </p>
-
-                {/* Key benefits */}
-                <div className="space-y-4 mb-8">
-                  {[
-                    'Continuous compliance improvement',
-                    'Strategic partnership opportunities',
-                    'Sustainable growth initiatives',
-                    'Community-focused development'
-                  ].map((benefit, index) => (
-                    <motion.div
-                      key={benefit}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                      className="flex items-center gap-3"
-                    >
-                      <div className="w-6 h-6 rounded-full bg-accent-gold/20 flex items-center justify-center flex-shrink-0">
-                        <CheckCircle2 className="w-4 h-4 text-accent-gold" />
-                      </div>
-                      <span className="text-white/90">{benefit}</span>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a 
-                    href="/contact" 
-                    className="inline-flex items-center justify-center gap-2 bg-accent-gold text-primary-base px-8 py-4 rounded-xl font-semibold hover:bg-accent-amber transition-all shadow-lg hover:shadow-xl hover:scale-105"
-                  >
-                    Partner With Us
-                    <Users className="w-5 h-5" />
-                  </a>
-                  <a 
-                    href="/services" 
-                    className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 hover:border-white/50 transition-all backdrop-blur-sm"
-                  >
-                    Our Services
-                  </a>
-                </div>
               </motion.div>
 
-              {/* Right contact card */}
               <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 shadow-2xl"
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all"
               >
-                <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-accent-gold/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <Shield className="w-8 h-8 text-accent-gold" />
-                  </div>
-                  <h3 className="text-2xl font-heading font-bold text-white mb-2">
-                    Compliance Excellence
-                  </h3>
-                  <p className="text-white/70">
-                    Building trust through regulatory adherence
-                  </p>
+                <div className="w-12 h-12 bg-accent-gold/20 rounded-xl flex items-center justify-center mb-4">
+                  <Award className="w-6 h-6 text-accent-gold" />
                 </div>
+                <h3 className="text-xl font-heading font-semibold mb-3">Quality Driven</h3>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  We maintain the highest standards of quality and safety across all our service offerings.
+                </p>
+              </motion.div>
 
-                <div className="space-y-4">
-                  {/* Stats */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/5 rounded-xl p-4 text-center">
-                      <div className="text-2xl font-bold text-accent-gold mb-1">100%</div>
-                      <div className="text-xs text-white/70">Compliance Rate</div>
-                    </div>
-                    <div className="bg-white/5 rounded-xl p-4 text-center">
-                      <div className="text-2xl font-bold text-accent-gold mb-1">ISO</div>
-                      <div className="text-xs text-white/70">Certified</div>
-                    </div>
-                  </div>
-
-                  {/* Contact info */}
-                  <div className="bg-white/5 rounded-xl p-4 space-y-3">
-                    <div className="flex items-center gap-3 text-white/90">
-                      <div className="w-8 h-8 bg-accent-gold/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Phone className="w-4 h-4 text-accent-gold" />
-                      </div>
-                      <div>
-                        <div className="text-xs text-white/60">Call Us</div>
-                        <div className="font-semibold">+27 123 456 789</div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3 text-white/90">
-                      <div className="w-8 h-8 bg-accent-gold/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Mail className="w-4 h-4 text-accent-gold" />
-                      </div>
-                      <div>
-                        <div className="text-xs text-white/60">Email Us</div>
-                        <div className="font-semibold">info@lynnsup.co.za</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <a 
-                    href="/contact"
-                    className="block w-full text-center bg-accent-gold/20 hover:bg-accent-gold/30 text-white px-6 py-3 rounded-xl font-semibold transition-all border border-accent-gold/30"
-                  >
-                    Schedule a Consultation
-                  </a>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all"
+              >
+                <div className="w-12 h-12 bg-accent-gold/20 rounded-xl flex items-center justify-center mb-4">
+                  <Shield className="w-6 h-6 text-accent-gold" />
                 </div>
+                <h3 className="text-xl font-heading font-semibold mb-3">Trust & Integrity</h3>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  Transparent operations and ethical business practices are at the core of everything we do.
+                </p>
               </motion.div>
             </div>
+
+            {/* CTA Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-center"
+            >
+              <div className="inline-flex flex-col sm:flex-row items-center gap-4">
+                <a 
+                  href="/contact" 
+                  className="group relative px-8 py-4 bg-accent-gold text-primary-base font-semibold rounded-xl overflow-hidden transition-all hover:scale-105 hover:shadow-xl hover:shadow-accent-gold/20"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    Partner With Us
+                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </span>
+                </a>
+                
+                <a 
+                  href="/services" 
+                  className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all"
+                >
+                  Explore Services
+                </a>
+              </div>
+              
+              <p className="text-white/60 text-sm mt-6">
+                Ready to discuss opportunities? Get in touch with our team today.
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>

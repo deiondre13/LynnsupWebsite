@@ -32,8 +32,8 @@ export default function Navbar() {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-md'
-          : 'bg-gradient-to-b from-primary-base/90 to-transparent'
+          ? 'bg-white shadow-lg'
+          : 'bg-white shadow-md'
       }`}
     >
       <div className="container-custom">
@@ -44,10 +44,10 @@ export default function Navbar() {
               LS
             </div>
             <div className="flex flex-col">
-              <span className={`font-heading font-bold text-xl ${isScrolled ? 'text-primary-base' : 'text-white'}`}>
+              <span className="font-heading font-bold text-xl text-primary-base">
                 Lynnsup
               </span>
-              <span className={`text-xs ${isScrolled ? 'text-neutral-muted' : 'text-white/80'}`}>
+              <span className="text-xs text-neutral-muted">
                 Pty Ltd
               </span>
             </div>
@@ -59,9 +59,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`font-medium transition-colors hover:text-accent-gold ${
-                  isScrolled ? 'text-neutral-dark' : 'text-white'
-                }`}
+                className="font-medium text-neutral-dark transition-colors hover:text-accent-gold"
               >
                 {link.label}
               </Link>
@@ -74,7 +72,7 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`lg:hidden p-2 rounded-lg ${isScrolled ? 'text-neutral-dark' : 'text-white'}`}
+            className="lg:hidden p-2 rounded-lg text-neutral-dark hover:text-accent-gold transition-colors"
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

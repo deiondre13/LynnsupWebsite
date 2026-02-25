@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { 
   Shield, 
@@ -53,10 +54,30 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero Section - Cleaner Design */}
-      <section className="relative bg-gradient-to-br from-primary-base via-primary-contrast to-primary-base text-white">
-        <div className="container-custom px-8 py-32 md:py-40">
-          <div className="max-w-4xl">
+      {/* Hero Section - With Construction Images */}
+      <section className="relative bg-gradient-to-br from-primary-base via-primary-contrast to-primary-base text-white overflow-hidden">
+        {/* Grid Background Pattern */}
+        <div className="absolute inset-0 opacity-20">
+          <div 
+            className="absolute inset-0" 
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, rgba(212, 175, 55, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(212, 175, 55, 0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: '40px 40px'
+            }}
+          />
+        </div>
+        
+        {/* Decorative Blur Orbs */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-accent-gold/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-gold/5 rounded-full blur-3xl" />
+        
+        <div className="container-custom px-8 py-32 md:py-40 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="max-w-2xl">
             <motion.div
               className="inline-block mb-6"
               initial={{ opacity: 0, x: -20 }}
@@ -124,6 +145,87 @@ export default function Home() {
                 <span>info@lynnsup.co.za</span>
               </div>
             </motion.div>
+          </div>
+
+          {/* Right - Image Gallery */}
+          <motion.div
+            className="relative"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            <div className="grid grid-cols-2 gap-4">
+              {/* Top Left - Construction Worker */}
+              <motion.div
+                className="relative h-64 rounded-2xl overflow-hidden shadow-2xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+              >
+                <Image
+                  src="/projects/construction-worker.jpg"
+                  alt="Construction worker on site"
+                  fill
+                  className="object-cover hover:scale-110 transition-transform duration-500"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              </motion.div>
+
+              {/* Top Right - Sandton Office */}
+              <motion.div
+                className="relative h-64 rounded-2xl overflow-hidden shadow-2xl mt-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.6 }}
+              >
+                <Image
+                  src="/projects/sandton-office-renovation.jpg"
+                  alt="Sandton office renovation project"
+                  fill
+                  className="object-cover hover:scale-110 transition-transform duration-500"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              </motion.div>
+
+              {/* Bottom Left - Solar Installation */}
+              <motion.div
+                className="relative h-64 rounded-2xl overflow-hidden shadow-2xl -mt-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+              >
+                <Image
+                  src="/projects/solar-installation.jpg"
+                  alt="Solar panel installation"
+                  fill
+                  className="object-cover hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              </motion.div>
+
+              {/* Bottom Right - Mining Site */}
+              <motion.div
+                className="relative h-64 rounded-2xl overflow-hidden shadow-2xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9, duration: 0.6 }}
+              >
+                <Image
+                  src="/projects/mining-site.jpg"
+                  alt="Mining site operations"
+                  fill
+                  className="object-cover hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              </motion.div>
+            </div>
+
+            {/* Decorative Elements */}
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent-gold/20 rounded-full blur-3xl" />
+            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-accent-gold/10 rounded-full blur-3xl" />
+          </motion.div>
           </div>
         </div>
       </section>
