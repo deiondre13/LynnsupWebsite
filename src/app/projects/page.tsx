@@ -1,7 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
+<<<<<<< HEAD
 import Image from 'next/image'
+=======
+>>>>>>> 2abdac524ee6d3066c74b4aa03e54684f1f54f83
 import { 
   Building2, 
   Wrench, 
@@ -27,7 +30,10 @@ export default function ProjectsPage() {
       status: 'Completed',
       year: '2024',
       description: 'Complete renovation of a 5-story office complex including structural upgrades, modern finishes, and energy-efficient systems.',
+<<<<<<< HEAD
       image: '/projects/sandton-office-renovation.jpg',
+=======
+>>>>>>> 2abdac524ee6d3066c74b4aa03e54684f1f54f83
       highlights: [
         'Full structural assessment and reinforcement',
         'Modern interior design and finishes',
@@ -196,7 +202,10 @@ export default function ProjectsPage() {
       status: 'Completed',
       year: '2024',
       description: 'Large-scale solar panel installation for commercial facility including battery storage and grid integration.',
+<<<<<<< HEAD
       image: '/projects/solar-installation.jpg',
+=======
+>>>>>>> 2abdac524ee6d3066c74b4aa03e54684f1f54f83
       highlights: [
         '500kW solar array',
         'Battery storage system',
@@ -336,6 +345,7 @@ export default function ProjectsPage() {
                   
                   {/* Image Placeholder */}
                   <div className="relative h-64 bg-gradient-to-br from-primary-base via-primary-contrast to-primary-base overflow-hidden">
+<<<<<<< HEAD
                     {/* Real Image if available */}
                     {project.image && (
                       <Image
@@ -346,6 +356,8 @@ export default function ProjectsPage() {
                         priority={index < 2}
                       />
                     )}
+=======
+>>>>>>> 2abdac524ee6d3066c74b4aa03e54684f1f54f83
                     {/* Animated gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-tr from-accent-gold/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     

@@ -19,8 +19,8 @@ import { staggerContainer, fadeUp } from '@/lib/motion'
 // SEO Metadata is in layout.tsx for home page
 
 export default function Home() {
-  // Use first 6 services for home page
-  const featuredServices = services.slice(0, 6)
+  // Use first 3 services for home page
+  const featuredServices = services.slice(0, 3)
   
   // Use first 4 metrics for home page
   const featuredMetrics = metrics.slice(0, 4)
@@ -90,7 +90,7 @@ export default function Home() {
             </motion.div>
 
             <motion.h1
-              className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-6 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
@@ -101,7 +101,7 @@ export default function Home() {
             </motion.h1>
 
             <motion.p
-              className="text-xl md:text-2xl text-white/80 mb-8 leading-relaxed"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-8 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
@@ -231,8 +231,10 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
+      <section className="section-padding bg-white relative">
+        {/* Subtle texture pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a365d' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
+        <div className="container-custom relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -240,7 +242,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary-base mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary-base mb-4">
               Our <span className="gradient-text">Services</span>
             </h2>
             <div className="divider-gold mx-auto mb-6"></div>
@@ -284,8 +286,10 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us Section */}
-      <section className="section-padding bg-neutral-light">
-        <div className="container-custom">
+      <section className="section-padding bg-white relative">
+        {/* Subtle texture pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a365d' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
+        <div className="container-custom relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -293,7 +297,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary-base mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary-base mb-6">
                 Why Choose <span className="gradient-text">Lynnsup</span>?
               </h2>
               <div className="divider-gold mb-6"></div>
@@ -381,12 +385,12 @@ export default function Home() {
                   </span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 leading-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6 leading-tight">
                   Ready to Elevate Your
                   <span className="block text-accent-gold">Business Operations?</span>
                 </h2>
                 
-                <p className="text-lg md:text-xl text-white/80 mb-8 leading-relaxed">
+                <p className="text-base sm:text-lg md:text-xl text-white/80 mb-8 leading-relaxed">
                   Partner with Lynnsup for comprehensive industrial solutions backed by expertise, 
                   compliance, and a commitment to excellence. Let&apos;s discuss how we can support your goals.
                 </p>
@@ -398,12 +402,12 @@ export default function Home() {
                     <div className="text-sm text-white/70">Years Experience</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-accent-gold mb-1">150+</div>
-                    <div className="text-sm text-white/70">Projects Done</div>
+                    <div className="text-3xl font-bold text-accent-gold mb-1">100%</div>
+                    <div className="text-sm text-white/70">Commitment</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-accent-gold mb-1">50+</div>
-                    <div className="text-sm text-white/70">Happy Clients</div>
+                    <div className="text-3xl font-bold text-accent-gold mb-1">24/7</div>
+                    <div className="text-sm text-white/70">Support</div>
                   </div>
                 </div>
 

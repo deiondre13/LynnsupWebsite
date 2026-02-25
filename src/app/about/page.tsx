@@ -16,9 +16,9 @@ export default function AboutPage() {
   // Company statistics
   const stats = [
     { value: '5+', label: 'Years of Excellence', icon: Calendar },
-    { value: '150+', label: 'Projects Completed', icon: CheckCircle },
-    { value: '50+', label: 'Happy Clients', icon: Users },
-    { value: '200+', label: 'Skilled Professionals', icon: UserCheck },
+    { value: '100%', label: 'Commitment to Quality', icon: CheckCircle },
+    { value: '24/7', label: 'Support Available', icon: Users },
+    { value: '1', label: 'Main Office', icon: UserCheck },
   ]
 
   // Core values with detailed descriptions
@@ -83,8 +83,8 @@ export default function AboutPage() {
     },
     {
       year: '2022',
-      title: 'ISO Certification',
-      description: 'Achieved ISO compliance and expanded team to over 200 skilled professionals across South Africa.',
+      title: 'ISO Quality Management System (QMS)',
+      description: 'Our QMS is aligned to ISO (ISO 9001 – 2015), ensuring quality standards across all operations.',
       icon: Award
     },
     {
@@ -94,9 +94,9 @@ export default function AboutPage() {
       icon: Zap
     },
     {
-      year: '2024',
+      year: '2024-25',
       title: 'Continued Growth',
-      description: 'Reached 150+ completed projects milestone and established partnerships with leading industrial companies.',
+      description: 'Aspiring to reach 150+ completed projects and establishing partnerships with leading industrial companies.',
       icon: TrendingUp
     },
   ]
@@ -150,12 +150,12 @@ export default function AboutPage() {
                   CIPC Registered • 2019/463569/07
                 </span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 leading-tight">
                 Building South Africa&apos;s
                 <br />
                 <span className="text-accent-gold">Industrial Future</span>
               </h1>
-              <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-8">
+              <p className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed mb-8">
                 Lynnsup (Pty) Ltd is a multi-service company committed to excellence, integrity, and creating meaningful employment opportunities across South Africa.
               </p>
               <Link 
@@ -195,80 +195,49 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Company Profile - Redesigned */}
+      {/* Company Profile */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="max-w-6xl mx-auto">
-            {/* Header */}
+          <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-16"
+              className="mb-12"
             >
-              <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary-base mb-4">
-                Company <span className="gradient-text">Profile</span>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary-base mb-4">
+                Company Profile
               </h2>
-              <div className="divider-gold mx-auto mb-6"></div>
+              <div className="divider-gold mb-6"></div>
+              <p className="text-lg text-neutral-muted mb-6">
+                <strong className="text-primary-base">Lynnsup (Pty) Ltd</strong> is a registered South African company
+                (Registration No: <strong>2019/463569/07</strong>) specializing in comprehensive multi-service solutions
+                across construction, technical support, mining, and industrial services.
+              </p>
+              <p className="text-lg text-neutral-muted leading-relaxed">
+                We position ourselves as a <strong>service supply hub</strong> that enables client companies to focus on
+                their core business while we handle essential supporting services with excellence, compliance, and integrity.
+              </p>
             </motion.div>
 
-            {/* Main Profile Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="bg-gradient-to-br from-neutral-light to-white rounded-3xl p-8 md:p-12 shadow-lg mb-12 border border-neutral-light"
-            >
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-16 h-16 bg-accent-gold/10 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <Building2 className="w-8 h-8 text-accent-gold" />
-                </div>
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-heading font-bold text-primary-base mb-2">
-                    Lynnsup (Pty) Ltd
-                  </h3>
-                  <div className="inline-flex items-center gap-2 bg-accent-gold/10 text-accent-gold px-3 py-1 rounded-full text-sm font-semibold">
-                    <Award className="w-4 h-4" />
-                    <span>CIPC: 2019/463569/07</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <p className="text-lg text-neutral-dark leading-relaxed">
-                  A registered South African company specializing in <strong className="text-primary-base">comprehensive multi-service solutions</strong> across construction, technical support, mining, and industrial services.
-                </p>
-                <div className="bg-white/50 rounded-xl p-6 border-l-4 border-accent-gold">
-                  <p className="text-lg text-neutral-dark leading-relaxed">
-                    We position ourselves as a <strong className="text-accent-gold">service supply hub</strong> that enables client companies to focus on their core business while we handle essential supporting services with excellence, compliance, and integrity.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Vision & Mission - Enhanced */}
+            {/* Vision & Mission */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary-base to-primary-contrast p-8 text-white shadow-lg hover:shadow-2xl transition-all"
+                className="card"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-accent-gold/10 rounded-full blur-2xl"></div>
-                <div className="relative z-10">
-                  <div className="w-14 h-14 bg-accent-gold/20 rounded-xl flex items-center justify-center mb-4">
-                    <Eye className="w-7 h-7 text-accent-gold" />
-                  </div>
-                  <h3 className="text-2xl font-heading font-bold mb-4">
-                    Our Vision
-                  </h3>
-                  <p className="text-white/90 leading-relaxed">
-                    To be the best service provider and increase employment opportunities to the most destitute persons, creating sustainable livelihoods and positive social impact.
-                  </p>
-                </div>
+                <Eye className="w-12 h-12 text-accent-gold mb-4" />
+                <h3 className="text-2xl font-heading font-semibold text-primary-base mb-4">
+                  Our Vision
+                </h3>
+                <p className="text-neutral-muted leading-relaxed">
+                  To be the best service provider and increase employment opportunities to the most destitute persons,
+                  creating sustainable livelihoods and positive social impact.
+                </p>
               </motion.div>
 
               <motion.div
@@ -276,65 +245,53 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-accent-gold to-accent-amber p-8 text-primary-base shadow-lg hover:shadow-2xl transition-all"
+                className="card"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
-                <div className="relative z-10">
-                  <div className="w-14 h-14 bg-primary-base/20 rounded-xl flex items-center justify-center mb-4">
-                    <Target className="w-7 h-7 text-primary-base" />
-                  </div>
-                  <h3 className="text-2xl font-heading font-bold mb-4">
-                    Our Mission
-                  </h3>
-                  <p className="text-primary-base/90 leading-relaxed">
-                    Develop a supply hub of services to allow companies to focus on core business while we deliver comprehensive, compliant, and high-quality supporting services.
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Work Collaborations & Compliance - Side by Side */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="bg-white rounded-2xl p-8 shadow-md border border-neutral-light hover:shadow-lg transition-shadow"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-accent-gold/10 rounded-xl flex items-center justify-center">
-                    <Handshake className="w-6 h-6 text-accent-gold" />
-                  </div>
-                  <h3 className="text-2xl font-heading font-bold text-primary-base">
-                    Work Collaborations
-                  </h3>
-                </div>
+                <Target className="w-12 h-12 text-accent-gold mb-4" />
+                <h3 className="text-2xl font-heading font-semibold text-primary-base mb-4">
+                  Our Mission
+                </h3>
                 <p className="text-neutral-muted leading-relaxed">
-                  Lynnsup is open to partnering with companies that share our values and those of our clients. We employ the best candidates and supply the best services to our clients on time, without compromising quality or integrity.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="bg-white rounded-2xl p-8 shadow-md border border-neutral-light hover:shadow-lg transition-shadow"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 bg-accent-gold/10 rounded-xl flex items-center justify-center">
-                    <Shield className="w-6 h-6 text-accent-gold" />
-                  </div>
-                  <h3 className="text-2xl font-heading font-bold text-primary-base">
-                    Compliance & Growth
-                  </h3>
-                </div>
-                <p className="text-neutral-muted leading-relaxed">
-                  Wherever we operate, we comply with all company operating standards and procedures, follow required occupational health and safety and hygiene procedures, and implement any regulations required for specific environments. We are committed to continuous growth and openness to new opportunities.
+                  Develop a supply hub of services to allow companies to focus on core business while we deliver
+                  comprehensive, compliant, and high-quality supporting services.
                 </p>
               </motion.div>
             </div>
+
+            {/* Work Collaborations */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-12"
+            >
+              <h3 className="text-2xl font-heading font-semibold text-primary-base mb-4">
+                Work Collaborations
+              </h3>
+              <p className="text-neutral-muted leading-relaxed">
+                Lynnsup is open to partnering with companies that share our values and those of our clients. We employ
+                the best candidates and supply the best services to our clients on time, without compromising quality or integrity.
+              </p>
+            </motion.div>
+
+            {/* Compliance */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-neutral-light p-8 rounded-2xl"
+            >
+              <h3 className="text-2xl font-heading font-semibold text-primary-base mb-4">
+                Compliance & Growth
+              </h3>
+              <p className="text-neutral-muted leading-relaxed">
+                Wherever we operate, we comply with all company operating standards and procedures, follow required
+                occupational health and safety and hygiene procedures, and implement any regulations required for specific
+                environments. We are committed to continuous growth and openness to new opportunities.
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>
