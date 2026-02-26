@@ -2,12 +2,7 @@
 
 import { type ChangeEvent, type FormEvent, useState } from 'react'
 import { motion } from 'framer-motion'
-<<<<<<< HEAD
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react'
-=======
-import { Mail, Phone, MapPin, Send } from 'lucide-react'
-import emailjs from '@emailjs/browser'
->>>>>>> 2abdac524ee6d3066c74b4aa03e54684f1f54f83
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -17,7 +12,6 @@ export default function ContactPage() {
     subject: '',
     message: '',
   })
-<<<<<<< HEAD
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [ticketNumber, setTicketNumber] = useState<string | null>(null)
   const [errorMessage, setErrorMessage] = useState<string>('')
@@ -81,104 +75,6 @@ export default function ContactPage() {
     }
   }
 
-=======
-  const [status, setStatus] = useState('')
-  const [ticketNumber, setTicketNumber] = useState<string | null>(null)
-  const [customerConfirmationSent, setCustomerConfirmationSent] = useState<boolean | null>(null)
-
-  const generateTicketNumber = () => {
-    const now = new Date()
-    const yyyy = now.getFullYear()
-    const mm = String(now.getMonth() + 1).padStart(2, '0')
-    const dd = String(now.getDate()).padStart(2, '0')
-
-    const bytes = new Uint8Array(6)
-    crypto.getRandomValues(bytes)
-    const rand = Array.from(bytes)
-      .map((b) => b.toString(16).padStart(2, '0'))
-      .join('')
-      .slice(0, 8)
-      .toUpperCase()
-
-    return `LYN-${yyyy}${mm}${dd}-${rand}`
-  }
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault()
-    setStatus('sending')
-    setTicketNumber(null)
-    setCustomerConfirmationSent(null)
-    
-    try {
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
-      const internalTemplateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-      const customerTemplateId = process.env.NEXT_PUBLIC_EMAILJS_CUSTOMER_TEMPLATE_ID
-
-      if (!serviceId || !internalTemplateId || !publicKey) {
-        setStatus('error')
-        return
-      }
-
-      const ticket = generateTicketNumber()
-
-      // Send email using EmailJS
-      const internalResult = await emailjs.send(
-        serviceId,
-        internalTemplateId,
-        {
-          ticket_number: ticket,
-          from_name: formData.name,
-          from_email: formData.email,
-          phone: formData.phone,
-          subject: formData.subject,
-          message: formData.message,
-          to_email: 'machaputadiwa1@gmail.com',
-        },
-        publicKey
-      )
-
-      if (internalResult.text !== 'OK') {
-        setStatus('error')
-        return
-      }
-
-      if (!customerTemplateId) {
-        setCustomerConfirmationSent(false)
-      } else {
-        try {
-          const customerResult = await emailjs.send(
-            serviceId,
-            customerTemplateId,
-            {
-              ticket_number: ticket,
-              customer_name: formData.name,
-              customer_email: formData.email,
-              subject: formData.subject,
-              message: formData.message,
-              to_email: formData.email,
-              support_email: 'info@lynnsup.co.za',
-            },
-            publicKey
-          )
-
-          setCustomerConfirmationSent(customerResult.text === 'OK')
-        } catch (error) {
-          console.error('Customer confirmation email error:', error)
-          setCustomerConfirmationSent(false)
-        }
-      }
-
-      setStatus('success')
-      setTicketNumber(ticket)
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
-    } catch (error) {
-      console.error('Email send error:', error)
-      setStatus('error')
-    }
-  }
-
->>>>>>> 2abdac524ee6d3066c74b4aa03e54684f1f54f83
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
@@ -401,33 +297,17 @@ export default function ContactPage() {
                       className="p-4 bg-green-50 border border-green-200 rounded-xl text-green-800 flex items-center gap-3"
                     >
                       <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-<<<<<<< HEAD
                         <CheckCircle className="w-5 h-5 text-white" />
-=======
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
->>>>>>> 2abdac524ee6d3066c74b4aa03e54684f1f54f83
                       </div>
                       <div>
                         <p className="font-semibold">Message sent successfully!</p>
                         <p className="text-sm text-green-700">
                           Your ticket number is{' '}
-<<<<<<< HEAD
                           <span className="font-semibold">{ticketNumber || '—'}</span>. We&apos;ll get back to you within 24-48 hours.
                         </p>
                         <p className="text-sm text-green-700 mt-1">
                           A confirmation email has been sent to <span className="font-semibold">{formData.email || 'your email'}</span>.
                         </p>
-=======
-                          <span className="font-semibold">{ticketNumber || '—'}</span>. We&apos;ll get back to you within 24 hours.
-                        </p>
-                        {customerConfirmationSent === false && (
-                          <p className="text-sm text-green-700">
-                            If you don&apos;t receive a confirmation email, please keep this ticket number for reference.
-                          </p>
-                        )}
->>>>>>> 2abdac524ee6d3066c74b4aa03e54684f1f54f83
                       </div>
                     </motion.div>
                   )}
@@ -439,21 +319,11 @@ export default function ContactPage() {
                       className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-800 flex items-center gap-3"
                     >
                       <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
-<<<<<<< HEAD
                         <AlertCircle className="w-5 h-5 text-white" />
                       </div>
                       <div>
                         <p className="font-semibold">Failed to send message</p>
                         <p className="text-sm text-red-700">{errorMessage || 'Please try again or call us directly at +27 72 294 8797'}</p>
-=======
-                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </div>
-                      <div>
-                        <p className="font-semibold">Failed to send message</p>
-                        <p className="text-sm text-red-700">Please try again or call us directly at +27 72 294 8797</p>
->>>>>>> 2abdac524ee6d3066c74b4aa03e54684f1f54f83
                       </div>
                     </motion.div>
                   )}

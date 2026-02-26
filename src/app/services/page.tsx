@@ -242,7 +242,6 @@ export default function ServicesPage() {
                   
                   {/* Content */}
                   <div className="relative p-8 flex flex-col h-full">
-<<<<<<< HEAD
                     {/* Image or Icon */}
                     {service.image ? (
                       <div className="relative h-48 w-full mb-6 rounded-xl overflow-hidden">
@@ -260,14 +259,6 @@ export default function ServicesPage() {
                         </div>
                       </div>
                     )}
-=======
-                    {/* Icon with animated background */}
-                    <div className="mb-6">
-                      <div className="w-20 h-20 bg-gradient-to-br from-accent-gold/10 to-accent-gold/5 rounded-2xl flex items-center justify-center text-accent-gold group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                        {service.icon}
-                      </div>
-                    </div>
->>>>>>> 2abdac524ee6d3066c74b4aa03e54684f1f54f83
 
                     {/* Title */}
                     <h3 className="text-2xl font-heading font-bold text-primary-base mb-3 group-hover:text-accent-gold transition-colors">
