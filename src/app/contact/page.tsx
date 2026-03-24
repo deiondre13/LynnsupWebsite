@@ -16,7 +16,7 @@ export default function ContactPage() {
   const [ticketNumber, setTicketNumber] = useState<string | null>(null)
   const [errorMessage, setErrorMessage] = useState<string>('')
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     
     // Validate required fields
@@ -34,45 +34,41 @@ export default function ContactPage() {
       return
     }
 
-    setStatus('sending')
-    setTicketNumber(null)
-    setErrorMessage('')
+    // Construct email body with quote request details
+    const emailSubject = `Quote Request: ${formData.subject}`
+    const emailBody = `Dear Lynnsup Team,
+
+I am writing to request a quote for the following:
+
+CONTACT DETAILS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone || 'Not provided'}
+
+REQUEST DETAILS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Subject: ${formData.subject}
+
+Message:
+${formData.message}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+I look forward to hearing from you within 24-48 hours.
+
+Best regards,
+${formData.name}`
+
+    // Create mailto link
+    const mailtoLink = `mailto:info@lynnsup.co.za?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`
     
-    try {
-      // Send POST request to Netlify function
-      const response = await fetch('/.netlify/functions/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          subject: formData.subject,
-          message: formData.message,
-        }),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok || !data.success) {
-        throw new Error(data.error || 'Failed to send message')
-      }
-
-      // Success!
-      setStatus('success')
-      setTicketNumber(data.ticketNumber)
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
-    } catch (error) {
-      console.error('Contact form error:', error)
-      setStatus('error')
-      setErrorMessage(
-        error instanceof Error 
-          ? error.message 
-          : 'Failed to send message. Please try again or call us directly at +27 72 294 8797'
-      )
-    }
+    // Open email client
+    window.location.href = mailtoLink
+    
+    // Show success message
+    setStatus('success')
+    setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
   }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
