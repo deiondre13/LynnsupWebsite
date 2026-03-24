@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { 
-  Target, Eye, Heart, Users, Award, Briefcase, Shield, 
+  Target, Eye, Heart, Users, Award, Shield, 
   TrendingUp, CheckCircle, Lightbulb, Handshake, Calendar,
   Building2, Wrench, HardHat, Zap, UserCheck
 } from 'lucide-react'
@@ -17,7 +17,7 @@ export default function AboutPage() {
   const stats = [
     { value: '5+', label: 'Years of Excellence', icon: Calendar },
     { value: '100%', label: 'Commitment to Quality', icon: CheckCircle },
-    { value: '24/7', label: 'Support Available', icon: Users },
+    { value: '9+', label: 'Service Categories', icon: Users },
     { value: '1', label: 'Main Office', icon: UserCheck },
   ]
 
@@ -101,33 +101,6 @@ export default function AboutPage() {
     },
   ]
 
-  // Leadership team (sample data)
-  const team = [
-    {
-      name: 'John Doe',
-      role: 'Chief Executive Officer',
-      bio: '15+ years of experience in industrial services and business development.',
-      image: null // Placeholder for future images
-    },
-    {
-      name: 'Jane Smith',
-      role: 'Operations Director',
-      bio: 'Expert in project management and operational excellence across multiple sectors.',
-      image: null
-    },
-    {
-      name: 'Michael Johnson',
-      role: 'Technical Director',
-      bio: 'Specialized in electrical and technical services with 20+ years industry experience.',
-      image: null
-    },
-    {
-      name: 'Sarah Williams',
-      role: 'Compliance Manager',
-      bio: 'Ensures all operations meet regulatory standards and safety requirements.',
-      image: null
-    },
-  ]
 
   return (
     <div className="pt-20">
@@ -399,101 +372,71 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Leadership Team Section */}
-      <section className="section-padding bg-neutral-light">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-primary-base mb-4">
-              Meet Our <span className="gradient-text">Leadership</span>
-            </h2>
-            <div className="divider-gold mx-auto mb-6"></div>
-            <p className="text-lg text-neutral-muted max-w-2xl mx-auto">
-              Experienced professionals dedicated to delivering excellence in every project
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="card text-center group hover:shadow-xl transition-all"
-              >
-                {/* Placeholder for team member image */}
-                <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-accent-gold/20 to-accent-gold/10 rounded-full flex items-center justify-center">
-                  <Users className="w-16 h-16 text-accent-gold" />
-                </div>
-                <h3 className="text-xl font-heading font-semibold text-primary-base mb-2">
-                  {member.name}
-                </h3>
-                <div className="text-accent-gold font-medium mb-3 text-sm">
-                  {member.role}
-                </div>
-                <p className="text-sm text-neutral-muted leading-relaxed">
-                  {member.bio}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Note for client */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mt-12 bg-white border-2 border-accent-gold/20 rounded-2xl p-8 text-center"
-          >
-            <Lightbulb className="w-12 h-12 text-accent-gold mx-auto mb-4" />
-            <h3 className="text-xl font-heading font-semibold text-primary-base mb-3">
-              Sample Team Data
-            </h3>
-            <p className="text-neutral-muted max-w-2xl mx-auto">
-              This leadership section uses placeholder data. Replace team member names, roles, bios, and add professional photos to personalize this section for your company.
-            </p>
-          </motion.div>
+      {/* CTA Section - Enhanced with distinct visual separation */}
+      <section className="relative section-padding bg-gradient-to-br from-white via-neutral-light to-white overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-accent-gold/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-base/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full">
+          <div className="absolute top-10 left-10 w-20 h-20 border-2 border-accent-gold/20 rounded-lg rotate-12"></div>
+          <div className="absolute bottom-10 right-10 w-16 h-16 border-2 border-primary-base/20 rounded-lg -rotate-12"></div>
         </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-primary-base via-primary-contrast to-primary-base text-white">
-        <div className="container-custom text-center">
+        <div className="container-custom relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto"
+            className="max-w-4xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-              Ready to Work Together?
-            </h2>
-            <p className="text-lg md:text-xl text-white/80 mb-8">
-              Let&apos;s discuss how Lynnsup can support your business with reliable, professional industrial services.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-accent-gold text-primary-base px-8 py-4 rounded-xl font-semibold hover:bg-accent-amber transition-all shadow-lg hover:shadow-xl hover:scale-105"
-              >
-                Get in Touch
-                <Handshake className="w-5 h-5" />
-              </Link>
-              <Link 
-                href="/services"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 hover:border-white/50 transition-all backdrop-blur-sm"
-              >
-                View Our Services
-              </Link>
+            {/* Card container with shadow */}
+            <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 lg:p-16 border border-gray-100">
+              {/* Icon badge */}
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-accent-gold to-accent-amber rounded-2xl mb-6 mx-auto">
+                <Handshake className="w-8 h-8 text-white" />
+              </div>
+
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary-base mb-6 text-center">
+                Ready to Work Together?
+              </h2>
+              
+              <p className="text-lg md:text-xl text-neutral-muted mb-10 text-center max-w-2xl mx-auto leading-relaxed">
+                Let&apos;s discuss how Lynnsup can support your business with reliable, professional industrial services.
+              </p>
+
+              {/* Stats row */}
+              <div className="grid grid-cols-3 gap-4 mb-10 pb-10 border-b border-gray-200">
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-accent-gold mb-1">5+</div>
+                  <div className="text-xs md:text-sm text-neutral-muted">Years Experience</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-accent-gold mb-1">150+</div>
+                  <div className="text-xs md:text-sm text-neutral-muted">Projects</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-accent-gold mb-1">9+</div>
+                  <div className="text-xs md:text-sm text-neutral-muted">Services</div>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link 
+                  href="/contact"
+                  className="group inline-flex items-center justify-center gap-2 bg-gradient-to-r from-accent-gold to-accent-amber text-white px-8 py-4 rounded-xl font-semibold hover:shadow-xl transition-all shadow-lg hover:scale-105"
+                >
+                  Get in Touch
+                  <Handshake className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+                </Link>
+                <Link 
+                  href="/services"
+                  className="inline-flex items-center justify-center gap-2 border-2 border-primary-base text-primary-base px-8 py-4 rounded-xl font-semibold hover:bg-primary-base hover:text-white transition-all"
+                >
+                  View Our Services
+                </Link>
+              </div>
             </div>
           </motion.div>
         </div>

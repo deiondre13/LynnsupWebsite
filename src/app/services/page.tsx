@@ -201,8 +201,8 @@ export default function ServicesPage() {
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20"
                 >
-                  <div className="text-3xl md:text-4xl font-bold text-accent-gold mb-1">24/7</div>
-                  <div className="text-white/90 text-sm font-semibold">Support</div>
+                  <div className="text-3xl md:text-4xl font-bold text-accent-gold mb-1">Mon–Fri</div>
+                  <div className="text-white/90 text-sm font-semibold">Dedicated Support</div>
                 </motion.div>
 
                 <motion.div
@@ -412,8 +412,8 @@ export default function ServicesPage() {
                   {/* Quick stats */}
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-white/5 rounded-xl p-4 text-center">
-                      <div className="text-2xl font-bold text-accent-gold mb-1">24/7</div>
-                      <div className="text-xs text-white/70">Support Available</div>
+                      <div className="text-2xl font-bold text-accent-gold mb-1">Mon–Fri</div>
+                      <div className="text-xs text-white/70">Dedicated Support</div>
                     </div>
                     <div className="bg-white/5 rounded-xl p-4 text-center">
                       <div className="text-2xl font-bold text-accent-gold mb-1">150+</div>

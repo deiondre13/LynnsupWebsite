@@ -136,7 +136,7 @@ export default function ContactPage() {
                 >
                   <Phone className="w-8 h-8 text-accent-gold mx-auto mb-2" />
                   <div className="text-white/90 text-sm font-semibold mb-1">Phone Support</div>
-                  <div className="text-white/70 text-xs">Available 24/7</div>
+                  <div className="text-white/70 text-xs">Available Mon–Fri</div>
                 </motion.div>
 
                 <motion.div
@@ -147,7 +147,7 @@ export default function ContactPage() {
                 >
                   <Mail className="w-8 h-8 text-accent-gold mx-auto mb-2" />
                   <div className="text-white/90 text-sm font-semibold mb-1">Email Response</div>
-                  <div className="text-white/70 text-xs">Within 24 hours</div>
+                  <div className="text-white/70 text-xs">Within 24–48 hours</div>
                 </motion.div>
 
                 <motion.div
@@ -436,26 +436,48 @@ export default function ContactPage() {
                 
                 <div className="space-y-3">
                   <div className="flex justify-between items-center py-2 border-b border-white/10">
-                    <span className="text-white/80">Monday - Friday</span>
-                    <span className="font-semibold text-accent-gold">8:00 AM - 5:00 PM</span>
+                    <span className="text-white/80">Monday – Friday</span>
+                    <span className="font-semibold text-accent-gold">8:00 AM – 4:00 PM</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-b border-white/10">
                     <span className="text-white/80">Saturday</span>
-                    <span className="font-semibold text-accent-gold">9:00 AM - 1:00 PM</span>
+                    <span className="font-semibold text-accent-gold">9:00 AM – 1:00 PM</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-white/10">
+                    <span className="text-white/80">Sunday</span>
+                    <span className="font-semibold text-white/60">Closed</span>
                   </div>
                   <div className="flex justify-between items-center py-2">
-                    <span className="text-white/80">Sunday</span>
+                    <span className="text-white/80">Public Holidays</span>
                     <span className="font-semibold text-white/60">Closed</span>
                   </div>
                 </div>
 
-                <div className="mt-6 p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-                  <p className="text-sm text-white/90 flex items-start gap-2">
-                    <svg className="w-5 h-5 text-accent-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>We respond to all inquiries within 24 hours during business days.</span>
-                  </p>
+                <div className="mt-6 space-y-3">
+                  <div className="p-3 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
+                    <p className="text-sm text-white/90 flex items-start gap-2">
+                      <svg className="w-5 h-5 text-accent-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                      </svg>
+                      <span>Phone support available during working hours (Mon–Fri).</span>
+                    </p>
+                  </div>
+                  <div className="p-3 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
+                    <p className="text-sm text-white/90 flex items-start gap-2">
+                      <svg className="w-5 h-5 text-accent-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span>We endeavour to respond to all inquiries within 24–48 hours during business days.</span>
+                    </p>
+                  </div>
+                  <div className="p-3 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
+                    <p className="text-sm text-white/90 flex items-start gap-2">
+                      <svg className="w-5 h-5 text-accent-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      <span>Walk-ins welcome — no appointment required for consultations.</span>
+                    </p>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -531,11 +553,11 @@ export default function ContactPage() {
                     {/* Quick stats */}
                     <div className="mt-8 grid grid-cols-2 gap-4">
                       <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                        <div className="text-2xl font-bold text-accent-gold mb-1">24/7</div>
-                        <div className="text-xs text-white/80">Available</div>
+                        <div className="text-2xl font-bold text-accent-gold mb-1">Mon–Fri</div>
+                        <div className="text-xs text-white/80">8AM – 4PM</div>
                       </div>
                       <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                        <div className="text-2xl font-bold text-accent-gold mb-1">5min</div>
+                        <div className="text-2xl font-bold text-accent-gold mb-1">24–48h</div>
                         <div className="text-xs text-white/80">Response</div>
                       </div>
                     </div>
@@ -638,7 +660,7 @@ export default function ContactPage() {
                 </svg>
               </div>
               <h4 className="font-semibold text-primary-base mb-2">Office Hours</h4>
-              <p className="text-sm text-gray-600">Mon-Fri: 8AM-5PM<br/>Sat: 9AM-1PM</p>
+              <p className="text-sm text-gray-600">Mon–Fri: 8AM–4PM<br/>Sat: 9AM–1PM</p>
             </div>
 
             <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 text-center hover:shadow-xl transition-shadow">

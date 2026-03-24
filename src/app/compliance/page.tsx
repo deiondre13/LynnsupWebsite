@@ -29,6 +29,18 @@ export default function CompliancePage() {
       description: 'Licensed to issue Certificates of Compliance for electrical installations',
       detail: 'Qualified electrical contractors',
     },
+    {
+      icon: <Award className="w-12 h-12" />,
+      title: 'B-BBEE Level 1',
+      description: 'Broad-Based Black Economic Empowerment Level 1 contributor status',
+      detail: 'B-BBEE Level 1 Certificate',
+    },
+    {
+      icon: <Shield className="w-12 h-12" />,
+      title: 'COIDA Registered',
+      description: 'Registered with the Compensation Fund under the Compensation for Occupational Injuries and Diseases Act',
+      detail: 'COIDA Registration',
+    },
   ]
 
   const commitments = [
@@ -174,7 +186,7 @@ export default function CompliancePage() {
             <div className="divider-gold mx-auto mb-6"></div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {certifications.map((cert, index) => (
               <motion.div
                 key={cert.title}

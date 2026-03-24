@@ -406,8 +406,8 @@ export default function Home() {
                     <div className="text-sm text-white/70">Commitment</div>
                   </div>
                   <div>
-                    <div className="text-3xl font-bold text-accent-gold mb-1">24/7</div>
-                    <div className="text-sm text-white/70">Support</div>
+                    <div className="text-3xl font-bold text-accent-gold mb-1">9+</div>
+                    <div className="text-sm text-white/70">Service Areas</div>
                   </div>
                 </div>
 
@@ -471,14 +471,14 @@ export default function Home() {
                   </div>
 
                   <div className="pt-6 border-t border-white/20">
-                    <p className="text-sm text-white/60 mb-3">Trusted by leading companies across South Africa</p>
+                    <p className="text-sm text-white/60 mb-3">Looking forward to working with leading companies across South Africa</p>
                     <div className="flex items-center gap-2">
                       <div className="flex -space-x-2">
                         <div className="w-8 h-8 rounded-full bg-accent-gold/30 border-2 border-white/20"></div>
                         <div className="w-8 h-8 rounded-full bg-accent-gold/40 border-2 border-white/20"></div>
                         <div className="w-8 h-8 rounded-full bg-accent-gold/50 border-2 border-white/20"></div>
                       </div>
-                      <span className="text-sm text-white/80 font-medium">50+ satisfied clients</span>
+                      <span className="text-sm text-white/80 font-medium">Growing network of satisfied clients</span>
                     </div>
                   </div>
                 </div>

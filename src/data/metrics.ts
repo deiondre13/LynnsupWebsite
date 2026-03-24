@@ -31,10 +31,10 @@ export const metrics: Metric[] = [
   },
   {
     id: 3,
-    label: 'Happy Clients',
+    label: 'Satisfied Clients',
     value: 50,
     suffix: '+',
-    description: 'Trusted by leading companies'
+    description: 'Growing network of satisfied clients'
   },
   {
     id: 4,

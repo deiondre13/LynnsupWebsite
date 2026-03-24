@@ -20,13 +20,13 @@ export default function ProjectsPage() {
   const projects = [
     {
       icon: <Building2 className="w-8 h-8" />,
-      title: 'Sandton Office Complex Renovation',
+      title: 'Hillside Office Revamps/ Building Renovation',
       category: 'Construction',
-      location: 'Sandton, Gauteng',
+      location: 'Hillside, Johannesburg',
       duration: '8 months',
       status: 'Completed',
       year: '2024',
-      description: 'Complete renovation of a 5-story office complex including structural upgrades, modern finishes, and energy-efficient systems.',
+      description: 'Complete renovation of an office complex including structural upgrades, modern finishes, and energy-efficient systems.',
       image: '/projects/sandton-office-renovation.jpg',
       highlights: [
         'Full structural assessment and reinforcement',
@@ -36,8 +36,7 @@ export default function ProjectsPage() {
       ],
       stats: {
         area: '12,000 m²',
-        value: 'R 45M',
-        team: '85 workers'
+        team: '15 workers'
       }
     },
     {
@@ -56,8 +55,8 @@ export default function ProjectsPage() {
         'Practical assessment materials'
       ],
       stats: {
-        modules: '24 courses',
-        trainees: '500+',
+        modules: '30+ Courses',
+        trainees: 'Training Modules',
         compliance: '100%'
       }
     },
@@ -77,7 +76,7 @@ export default function ProjectsPage() {
         'Emergency system installation'
       ],
       stats: {
-        certificates: '45 CoCs',
+        certificates: 'CoC Certificates',
         inspections: '120+',
         compliance: '100%'
       }
@@ -98,9 +97,9 @@ export default function ProjectsPage() {
         'Emergency stock management'
       ],
       stats: {
-        items: '50,000+ units',
-        sites: '12 locations',
-        workers: '3,000+'
+        items: '5,000+- units',
+        sites: 'Different locations',
+        clients: '1,000+- clients'
       }
     },
     {
@@ -117,12 +116,7 @@ export default function ProjectsPage() {
         'Fire suppression system',
         'Rainwater harvesting setup',
         'Greywater recycling system'
-      ],
-      stats: {
-        floors: '8 levels',
-        fixtures: '200+ units',
-        capacity: '50,000L'
-      }
+      ]
     },
     {
       icon: <Mountain className="w-8 h-8" />,
@@ -138,12 +132,7 @@ export default function ProjectsPage() {
         'Equipment maintenance',
         'Safety system monitoring',
         'Emergency response team'
-      ],
-      stats: {
-        depth: '2,500m',
-        equipment: '150+ units',
-        uptime: '98.5%'
-      }
+      ]
     },
     {
       icon: <Building2 className="w-8 h-8" />,
@@ -159,12 +148,7 @@ export default function ProjectsPage() {
         'Sustainable building materials',
         'Solar power integration',
         'Community recreation facilities'
-      ],
-      stats: {
-        units: '45 homes',
-        area: '8,500 m²',
-        completion: '65%'
-      }
+      ]
     },
     {
       icon: <Users className="w-8 h-8" />,
@@ -180,12 +164,7 @@ export default function ProjectsPage() {
         'Vendor management',
         'Quality assurance',
         'Cost optimization'
-      ],
-      stats: {
-        clients: '25+ companies',
-        suppliers: '200+',
-        savings: '18% avg'
-      }
+      ]
     },
     {
       icon: <Zap className="w-8 h-8" />,
@@ -198,16 +177,11 @@ export default function ProjectsPage() {
       description: 'Large-scale solar panel installation for commercial facility including battery storage and grid integration.',
       image: '/projects/solar-installation.jpg',
       highlights: [
-        '500kW solar array',
+        'Large-scale solar array',
         'Battery storage system',
         'Grid-tie integration',
         'Monitoring system'
-      ],
-      stats: {
-        panels: '1,200 units',
-        capacity: '500kW',
-        savings: '40% energy'
-      }
+      ]
     }
   ]
 
@@ -467,14 +441,16 @@ export default function ProjectsPage() {
                     </div>
 
                     {/* Stats */}
-                    <div className="grid grid-cols-3 gap-4 pt-4 border-t border-neutral-light">
-                      {Object.entries(project.stats).map(([key, value]) => (
-                        <div key={key} className="text-center">
-                          <div className="text-lg font-bold text-accent-gold mb-1">{value}</div>
-                          <div className="text-xs text-neutral-muted capitalize">{key}</div>
-                        </div>
-                      ))}
-                    </div>
+                    {project.stats && (
+                      <div className="grid grid-cols-3 gap-4 pt-4 border-t border-neutral-light">
+                        {Object.entries(project.stats).map(([key, value]) => (
+                          <div key={key} className="text-center">
+                            <div className="text-lg font-bold text-accent-gold mb-1">{value}</div>
+                            <div className="text-xs text-neutral-muted capitalize">{key}</div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.div>
