@@ -33,7 +33,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-white shadow-lg'
-          : 'bg-white shadow-md'
+          : 'bg-white shadow-none border-b border-neutral-surface'
       }`}
     >
       <div className="container-custom">
@@ -59,7 +59,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-medium text-neutral-dark transition-colors hover:text-accent-gold"
+                className="font-medium text-neutral-dark transition-colors hover:text-accent-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold rounded-sm px-1"
               >
                 {link.label}
               </Link>

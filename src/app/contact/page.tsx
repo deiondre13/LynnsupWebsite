@@ -93,11 +93,12 @@ ${formData.name}`
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-gold/5 rounded-full blur-3xl"></div>
         
         <div className="container-custom relative z-10">
-          <div className="max-w-5xl mx-auto text-center">
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
+              className="lg:col-span-7"
             >
               {/* Badge */}
               <div className="inline-flex items-center gap-2 bg-accent-gold/20 text-accent-gold px-4 py-2 rounded-full text-sm font-semibold mb-6">
@@ -111,26 +112,27 @@ ${formData.name}`
               </h1>
               
               {/* Main description */}
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto mb-6 leading-relaxed">
-                Ready to discuss your project? Contact us today for a consultation and discover 
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-6 leading-relaxed">
+                Ready to discuss your project? Contact us today for a consultation and discover
                 how Lynnsup can support your business needs.
               </p>
 
               {/* Additional context */}
-              <p className="text-base md:text-lg text-white/70 max-w-2xl mx-auto mb-12">
-                Our team is available to answer your questions, provide quotes, and discuss how our 
+              <p className="text-base md:text-lg text-white/70">
+                Our team is available to answer your questions, provide quotes, and discuss how our
                 comprehensive services can meet your specific requirements.
               </p>
+            </motion.div>
 
-              {/* Contact Stats */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            {/* Contact Stats — stacked with offsets */}
+            <div className="lg:col-span-5 flex flex-col gap-4 md:gap-6">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20"
                 >
-                  <Phone className="w-8 h-8 text-accent-gold mx-auto mb-2" />
+                  <Phone className="w-8 h-8 text-accent-gold mb-2" />
                   <div className="text-white/90 text-sm font-semibold mb-1">Phone Support</div>
                   <div className="text-white/70 text-xs">Available Mon–Fri</div>
                 </motion.div>
@@ -139,9 +141,9 @@ ${formData.name}`
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20"
+                  className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 lg:ml-10"
                 >
-                  <Mail className="w-8 h-8 text-accent-gold mx-auto mb-2" />
+                  <Mail className="w-8 h-8 text-accent-gold mb-2" />
                   <div className="text-white/90 text-sm font-semibold mb-1">Email Response</div>
                   <div className="text-white/70 text-xs">Within 24–48 hours</div>
                 </motion.div>
@@ -152,12 +154,11 @@ ${formData.name}`
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20"
                 >
-                  <MapPin className="w-8 h-8 text-accent-gold mx-auto mb-2" />
+                  <MapPin className="w-8 h-8 text-accent-gold mb-2" />
                   <div className="text-white/90 text-sm font-semibold mb-1">Main Office</div>
                   <div className="text-white/70 text-xs">Rand West City</div>
                 </motion.div>
-              </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -493,18 +494,18 @@ ${formData.name}`
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="mb-16 max-w-3xl"
           >
             <div className="inline-flex items-center gap-2 bg-accent-gold/10 text-accent-gold px-5 py-2.5 rounded-full text-sm font-semibold mb-6 border border-accent-gold/20">
               <MapPin className="w-4 h-4" />
               <span>Visit Us</span>
             </div>
-            
+
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
               Our <span className="bg-gradient-to-r from-accent-gold via-yellow-500 to-amber-500 bg-clip-text text-transparent">Headquarters</span>
             </h2>
-            
-            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
               Centrally located in Rand West City to serve clients across Gauteng and beyond
             </p>
           </motion.div>
@@ -649,8 +650,8 @@ ${formData.name}`
             transition={{ duration: 0.6, delay: 0.3 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-5xl mx-auto"
           >
-            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 text-center hover:shadow-xl transition-shadow">
-              <div className="w-12 h-12 bg-accent-gold/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 bg-accent-gold/10 rounded-lg flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -659,8 +660,8 @@ ${formData.name}`
               <p className="text-sm text-gray-600">Mon–Fri: 8AM–4PM<br/>Sat: 9AM–1PM</p>
             </div>
 
-            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 text-center hover:shadow-xl transition-shadow">
-              <div className="w-12 h-12 bg-accent-gold/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow md:translate-y-6">
+              <div className="w-12 h-12 bg-accent-gold/10 rounded-lg flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
@@ -669,8 +670,8 @@ ${formData.name}`
               <p className="text-sm text-gray-600">No appointment needed for consultations</p>
             </div>
 
-            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 text-center hover:shadow-xl transition-shadow">
-              <div className="w-12 h-12 bg-accent-gold/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 bg-accent-gold/10 rounded-lg flex items-center justify-center mb-4">
                 <svg className="w-6 h-6 text-accent-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                 </svg>
